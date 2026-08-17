@@ -1,78 +1,107 @@
 import time
+#FUNÇÕES
 
-print("======================================================")
-print("")
-print("                     Path of Shadows                  ")
-print("")
-print("======================================================")
-
-nome = input("Qual o seu nome?  ")
-print()
-print()
-print(f"Bem-Vindo, {nome}.")
-print()
-print("Sua jornada pelo caminho das sombras começa agora...")   
-
-time.sleep(2)
-escolha_classe = 0
-while escolha_classe != 1 and escolha_classe != 2 and escolha_classe != 3:
-    print("")
-    print("[1] Guerreiro")
-    print("[2] Mago")
-    print("[3] Arqueiro")
-    print("")
-
-    escolha_classe = int(input("Escolha sua classe: "))
-    print("")
-
-    if escolha_classe == 1:
-        classe = 'Guerreiro'
-        vida = 120
-        ataque = 15
-        defesa = 12
+def apresentacao():
     
+    print("======================================================")
+    print("")
+    print("                     Path of Shadows                  ")
+    print("")
+    print("======================================================")
 
-    elif escolha_classe == 2:
-        classe = 'Mago'
-        vida = 100
-        ataque = 20
-        defesa = 8
+    nome = input("Qual o seu nome?  ")
     
+    print()
+    
+    print(f"Bem-Vindo, {nome}.")
+    
+    print()
+    
+    print("Sua jornada pelo caminho das sombras começa agora...")   
+    time.sleep(2)
+    
+    return nome
 
-    elif escolha_classe == 3:
-        classe = 'Arqueiro'
-        vida = 80
-        ataque = 25
-        defesa = 5
+def escolher_classe():
+    escolha_classe = 0
+    while escolha_classe != 1 and escolha_classe != 2 and escolha_classe != 3:
+        print("")
+        print("[1] Guerreiro")
+        print("[2] Mago")
+        print("[3] Arqueiro")
+        print("")
 
-    else: 
-        print("Escolha uma classe válida")
+        escolha_classe = int(input("Escolha sua classe: "))
+        print("")
+
+        if escolha_classe == 1:
+            classe = 'Guerreiro'
+            vida = 120
+            ataque = 15
+            defesa = 12
+        
+
+        elif escolha_classe == 2:
+            classe = 'Mago'
+            vida = 100
+            ataque = 20
+            defesa = 8
+        
+
+        elif escolha_classe == 3:
+            classe = 'Arqueiro'
+            vida = 80
+            ataque = 25
+            defesa = 5
+
+        else: 
+            print("Escolha uma classe válida")
+        
+    return classe, vida, ataque, defesa
+
+def status(classe, vida_atual, vida, ataque, defesa):
+    print("Boa escolha! Abaixo suas informações:")
+    print("")
+    print(f"Classe: {classe}")
+    print(f"Vida: {vida_atual}/{vida}")
+    print(f"Ataque: {ataque}")
+    print(f"Defesa: {defesa}")
+    
+def narrativa():
+    time.sleep(2)
+    print()
+    print("Você segue pela floresta...")
+    print("O vento fica mais forte. As árvores começam a esconder a luz do sol")
+    print("E de repente, você escuta um barulho atrás de você.")
+    print("UM GOBLIN!!")
+    print()
+    time.sleep(1)
+    
+    return
+
+def criar_inimigo():
+    inimigo = 'Goblin'
+    vida_inimigo = 60
+    vida_atual_inimigo = vida_inimigo
+    ataque_inimigo = 10
+    defesa_inimigo = 5
+    return inimigo, vida_inimigo, vida_atual_inimigo, ataque_inimigo, defesa_inimigo
+
+
+# PROGRAMA PRINCIPAL
+
+nome = apresentacao()
+
+classe, vida, ataque, defesa = escolher_classe()
 
 vida_atual = vida
 
+status(classe, vida_atual, vida, ataque, defesa)
     
+narrativa()
     
-print("Boa escolha! Abaixo suas informações:")
-print("")
-print(f"Classe: {classe}")
-print(f"Vida: {vida_atual}/{vida}")
-print(f"Ataque: {ataque}")
-print(f"Defesa: {defesa}")
+inimigo, vida_inimigo, vida_atual_inimigo, ataque_inimigo, defesa_inimigo = criar_inimigo()
 
-time.sleep(2)
-print()
-print("Você segue pela floresta...")
-print("O vento fica mais forte. As árvores começam a esconder a luz do sol")
-print("E de repente, você escuta um barulho atrás de você.")
-print("UM GOBLIN!!")
-print()
-time.sleep(1)
-inimigo = 'Goblin'
-vida_inimigo = 60
-vida_atual_inimigo = vida_inimigo
-ataque_inimigo = 10
-defesa_inimigo = 5
-print()
 
 print("======================================================")
 print("")
@@ -133,7 +162,6 @@ while vida_atual_inimigo > 0:
                 if vida_atual <= 0:
                     print()
                     print("Você morreu!")
-                    print("GAME OVER")
                     morreu = True
                     break
                 
